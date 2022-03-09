@@ -7,15 +7,15 @@ interface IProps {
     direction?: directions;
     render: any;
     data: Array<AppBarItem>;
+    cssNames?: Array<String>;
 }
 
-const AppBar: FC<IProps> = ({direction = "horizontal", data, render}) => {
-    /*let result = data.map((item) => {
-        return <ItemComponent>
-            asdasd
-        </ItemComponent>
-    });*/
-    return <div>{render("something")}</div>
+const AppBar: FC<IProps> = ({direction = "horizontal", data, render, cssNames}) => {
+    let result = data.map((item) => {
+        return render(item.title);
+    });
+    return <div className = {classNames(cssNames)}>{result}</div>
 };
 
 export default AppBar;
+

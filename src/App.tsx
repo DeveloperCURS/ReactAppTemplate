@@ -29,7 +29,7 @@ const App = () => {
                     render={(children: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined) => (
                         <Button className="d-flex">{children}</Button>
                     )} cssNames={[]}/>
-            <Content ContentComponent={()=><h1>Content</h1>} cssNames={[]}/> 
+            <Content ContentComponent={()=><h1>Content</h1>} cssNames={[]}/>
         </div>
     );
 };
