@@ -1,8 +1,12 @@
+@mixin d-flex {
+  display: flex;
+}
+
 .d-flex {
-    display: flex;
+  @include d-flex;
 }
 
 .d-fcolumn {
-    display: flex;
-    flex-direction: column;
+  @include d-flex;
+  flex-direction: column;
 }
