@@ -1,10 +1,17 @@
-import React from 'react';
+import React, {memo} from 'react';
 import "./assets/App.css";
 import {Button} from "@mui/material";
 import AppBar from "./AppBar";
 import {AppBarItem} from "./types/types";
 import "./assets/common.scss";
 import Content from "./Content";
+
+
+const A = () => {
+    return (
+        <div>asdsad</div>
+    );
+}
 
 const App = () => {
     let data: Array<AppBarItem> = [
@@ -26,12 +33,14 @@ const App = () => {
     return (
         <div className="d-flex">
             <AppBar data={data}
-                    render={(children: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined) => (
-                        <Button className="d-flex">{children}</Button>
+                    render={(children: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined, onClick: any) => (
+                        <Button className="d-flex" onClick={onClick}>{children}</Button>
                     )} cssNames={[]}/>
-            <Content ContentComponent={()=><h1>Content</h1>} cssNames={[]}/>
+            <Content ContentComponent={() => <h1>Content</h1>} cssNames={[]}>
+                <h1>something</h1>
+            </Content>
         </div>
     );
 };
 
-export default App;
+export default memo(App);
