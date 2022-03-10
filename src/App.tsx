@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React, {memo, useRef, useState} from 'react';
 import "./assets/App.css";
 import {Button} from "@mui/material";
 import AppBar from "./AppBar";
@@ -13,19 +13,32 @@ const A = () => {
     );
 }
 
+const B = () => {
+    return (
+        <div>asdasdsadasdasd</div>
+    );
+}
+
+
+const components = {
+    'page1': A,
+    'page2': B,
+}
+
 const App = () => {
+    const [currentComponent, setCurrentComponent] = useState(()=><A/>);
     let data: Array<AppBarItem> = [
         {
             title: "title 1",
             callback: () => {
-                console.log("clicked");
+                setCurrentComponent(() => <A/>);
             },
             classNames: []
         },
         {
             title: "title 2",
             callback: () => {
-                console.log("clicked");
+                setCurrentComponent(() => <B/>);
             },
             classNames: []
         }
@@ -37,7 +50,7 @@ const App = () => {
                         <Button className="d-flex" onClick={onClick}>{children}</Button>
                     )} cssNames={[]}/>
             <Content ContentComponent={() => <h1>Content</h1>} cssNames={[]}>
-                <h1>something</h1>
+                {currentComponent}
             </Content>
         </div>
     );
