@@ -6,9 +6,19 @@ type directions = "vertical" | "horizontal";
 
 interface AppBarItem {
     title: string;
-    callback: ()=>void;
+    callback: () => void;
     classNames: Array<String>;
 }
 
-export type {AppBar, directions, AppBarItem};
+
+
+
+
+interface IURLs {
+    url: string;
+    callbackOnSuccess: any;
+    callbackOnError: any;
+}
+
+export type {AppBar, directions, AppBarItem, IURLs};
 

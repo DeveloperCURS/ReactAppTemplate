@@ -12,9 +12,9 @@ interface IProps {
 
 const AppBar: FC<IProps> = ({direction = "horizontal", data, render, cssNames}) => {
     let result = data.map((item) => {
-        return render(item.title, item.callback);
+        return render(item.title, item.callback, item.classNames);
     });
-    return <div className={classNames(cssNames)}>{result}</div>
+    return <div className={classNames(cssNames, direction == "horizontal" ? "d-flex" : "d-fcolumn")}>{result}</div>
 };
 
 export default memo(AppBar);
