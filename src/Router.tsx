@@ -21,15 +21,24 @@ const B = () => {
 }
 const Router = () => {
     const config = [{
+        forAuth: false,
         url: "/people",
         callbackOnSuccess: () => <App/>,
-        callbackOnError: () => <B/>
-    }]
+        callbackOnError: () => <B/>,
+        callbackOnAuthError: () => <B/>
+    },
+        {
+            forAuth: true,
+            url: "/posts",
+            callbackOnSuccess: () => <App/>,
+            callbackOnError: () => <B/>,
+            callbackOnAuthError: () => <B/>
+        }]
 
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="*" element={<RouterWrapper availableURLs={config}><App/></RouterWrapper>}/>
+                <Route path="*" element={<RouterWrapper availableURLs={config} isAuth={false}><App/></RouterWrapper>}/>
             </Routes>
         </BrowserRouter>
     );

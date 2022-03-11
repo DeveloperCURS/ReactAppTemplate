@@ -5,20 +5,31 @@ import {IURLs} from "./types/types";
 
 interface IProps {
     availableURLs: Array<IURLs>;
+    isAuth: boolean;
 }
 
-const RouterWrapper: FC<IProps> = ({children, availableURLs}) => {
+const RouterWrapper: FC<IProps> = ({children, availableURLs, isAuth}) => {
     const location = useLocation();
     useEffect(() => {
         console.log(location)
     });
     return (
         <div>
-            {availableURLs.map((item)=>{
+            {availableURLs.filter((item) => {
+                return location.pathname == item.url
+            }).map((item) => {
                 if (location.pathname !== item.url) {
                     return item.callbackOnError();
                 }
-                return item.callbackOnSuccess();
+                if (isAuth == false && item.forAuth == true) {
+                    return item.callbackOnAuthError();
+                }
+                if (item.forAuth && isAuth) {
+                    return item.callbackOnSuccess();
+                }
+                if (item.forAuth == false) {
+                    return item.callbackOnSuccess();
+                }
             })}
         </div>
     );
