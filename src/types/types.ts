@@ -15,9 +15,11 @@ interface AppBarItem {
 
 
 interface IURLs {
+    forAuth: boolean;
     url: string;
     callbackOnSuccess: any;
     callbackOnError: any;
+    callbackOnAuthError: any;
 }
 
 export type {AppBar, directions, AppBarItem, IURLs};
