@@ -6,6 +6,7 @@ import {AppBarItem} from "./types/types";
 import "./assets/common.scss";
 import Content from "./Content";
 import classNames from "classnames";
+import LoadingHandler from "./LoadingHandler";
 
 
 const A = () => {
@@ -22,6 +23,7 @@ const B = () => {
 
 const App = () => {
     const [currentComponent, setCurrentComponent] = useState(<A/>);
+    const [isLoading, setLoading] = useState(false);
     let data: Array<AppBarItem> = [
         {
             title: "title 1",
@@ -44,9 +46,15 @@ const App = () => {
                     render={(children: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined, onClick: any, cssNames: Array<string>) => (
                         <Button className={classNames("d-flex", cssNames)} onClick={onClick}>{children}</Button>
                     )} cssNames={["h-100"]}/>
-            <Content ContentComponent={() => <h1>Content</h1>} cssNames={[]}>
-                {currentComponent}
-            </Content>
+            <button onClick={() => {
+                setLoading(!isLoading);
+            }}>нажмите
+            </button>
+            <LoadingHandler isLoading={isLoading} LoadingComponent={<>загрузка</>}>
+                <Content ContentComponent={() => <h1>Content</h1>} cssNames={[]}>
+                    {currentComponent}
+                </Content>
+            </LoadingHandler>
         </div>
     );
 };
